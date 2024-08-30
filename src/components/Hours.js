@@ -1,35 +1,32 @@
-// Placeholder to host a component
-// components/Hours.js
-import React from 'react';
+import React from "react";
 
 const Hours = () => {
-  const today = new Date();
-  const dayOfWeek = today.getDay();
+    // add logic
 
-  let openingHours = '';
+    const shelterHours = [
+        { day: "Monday", open: "10:00", close: "16:00" },
+        { day: "Tuesday", open: "10:00", close: "16:00" },
+        { day: "Wednesday", open: "10:00", close: "16:00" },
+        { day: "Thursday", open: "10:00", close: "16:00" },
+        { day: "Friday", open: "10:00", close: "16:00" },
+        { day: "Saturday", open: "9:00", close: "20:00" },
+        { day: "Sunday", open: "9:00", close: "20:00" },
 
-  switch (dayOfWeek) {
-    case 0: // Domingo
-    case 6: // Sábado
-      openingHours = '9:00 AM - 8:00 PM';
-      break;
-    case 1: // Lunes
-    case 2: // Martes
-    case 3: // Miércoles
-    case 4: // Jueves
-    case 5: // Viernes
-      openingHours = '10:00 AM - 4:00 PM';
-      break;
-    default:
-      openingHours = 'Cerrado';
-  }
+    ]
 
-  return (
-    <div>
-      <h3>Horario de Hoy:</h3>
-      <p>{openingHours}</p>
-    </div>
-  );
-};
+    // get the long day name and store it in a variable called today
+    const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+
+    // get today's hours
+    const todayHours = shelterHours.find((day) => day.day === today);
+
+    // display today and the hours in an div with an id of hours
+    return (
+        <div id="hours">
+            <h2>Today's Hours</h2>
+            <p>{todayHours.day} {todayHours.open} - {todayHours.close}</p>
+        </div>
+    )
+}
 
 export default Hours;
